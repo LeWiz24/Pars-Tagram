@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         if (ParseUser.getCurrentUser() != null){
             goToMainActivity();
         }
+        // Set listener to go to camera activity
 
 
         // Set listener to login if user has an account

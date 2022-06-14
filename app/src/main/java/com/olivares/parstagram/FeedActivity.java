@@ -3,6 +3,7 @@ package com.olivares.parstagram;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -16,12 +17,15 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class FeedActivity extends AppCompatActivity {
 
     private RecyclerView rvPosts;
     protected PostsAdapter adapter;
     protected List<Post> allPosts;
     public static final String TAG = "FeedActivity";
+    protected SwipeRefreshLayout swipeRefreshLayout;
 
 
     @Override
@@ -29,6 +33,16 @@ public class FeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
 
+        swipeRefreshLayout = findViewById(R.id.swipeContainer);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                clear();
+                queryPosts();
+                swipeRefreshLayout.setRefreshing(false);
+
+            }
+        });
         rvPosts = findViewById(R.id.rvPosts);
 
         allPosts = new ArrayList<>();
@@ -40,7 +54,6 @@ public class FeedActivity extends AppCompatActivity {
         rvPosts.setLayoutManager(new LinearLayoutManager(this));
         // querry posts from Parstagram
         queryPosts();
-
 
     }
 
@@ -73,5 +86,16 @@ public class FeedActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
+    }
+//    public void addAll(List<Post> posts)
+//    {
+//        allPosts.addAll(posts);
+//        adapter.notifyDataSetChanged();
+//    }
+
+    protected void clear()
+    {
+        allPosts.clear();
+        adapter.notifyDataSetChanged();
     }
 }

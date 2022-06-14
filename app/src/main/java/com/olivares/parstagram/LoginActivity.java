@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // Intent to navigate to main activity
     private void goToMainActivity() {
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, FeedActivity.class);
         startActivity(i);
         finish();
     }

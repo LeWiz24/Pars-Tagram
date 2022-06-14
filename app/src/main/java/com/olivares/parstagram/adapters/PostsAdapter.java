@@ -22,6 +22,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     private List<Post> posts;
 
 
+
+
     public PostsAdapter(Context context, List<Post> posts) {
         this.context = context;
         this.posts = posts;
@@ -68,5 +70,13 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             }
 
         }
+    }
+    public void clear() {
+        posts.clear();
+        notifyDataSetChanged();
+    }
+    public void addAll(List<Post> list) {
+        posts.addAll(list);
+        notifyDataSetChanged();
     }
 }

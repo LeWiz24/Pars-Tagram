@@ -118,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
         }
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -134,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
     // Returns the File for a photo stored on disk given the fileName
     private File getPhotoFileUri(String fileName) {
         // Get safe storage directory for photos

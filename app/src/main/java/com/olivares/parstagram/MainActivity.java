@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -20,6 +22,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.olivares.parstagram.adapters.PostsAdapter;
+import com.olivares.parstagram.models.Post;
 import com.parse.FindCallback;
 import com.parse.LogOutCallback;
 import com.parse.ParseException;
@@ -29,6 +33,7 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
@@ -45,10 +50,17 @@ public class MainActivity extends AppCompatActivity {
     private File photoFile;
     public String photoFileName = "photo.jpg";
 
+    protected PostsAdapter adapter;
+    protected List<Post> allPosts;
+    private RecyclerView rvPosts;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        allPosts = new ArrayList<>();
+        adapter = new PostsAdapter(this, allPosts);
 
         // Reference to the xml stuff
         etDescription = findViewById(R.id.etDescription);
@@ -161,25 +173,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void queryPosts() {
-        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
-        query.include(Post.KEY_USER);
-        query.findInBackground(new FindCallback<Post>() {
-            @Override
-            public void done(List<Post> posts, ParseException e) {
-                if (e != null){
-                    Log.e(TAG, "Something has gone wrong", e);
-                    return;
-                }
-                for (Post post: posts) {
-                    Log.i(TAG, "Post: " + post.getDescription());
-                }
-
-            }
-        });
-    }
-
-
 
     // Create and inflate options menu
     @Override
@@ -193,6 +186,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.btnLogout){
             logout();
+        }
+        if (item.getItemId() == R.id.btnNavigate){
+            Intent i = new Intent(this, FeedActivity.class);
+            startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }

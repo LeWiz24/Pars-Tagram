@@ -2,6 +2,7 @@ package com.olivares.parstagram;
 
 import android.app.Application;
 
+import com.olivares.parstagram.models.Post;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
@@ -10,7 +11,7 @@ public class ParseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        // Register your parse models
+        // Register your parse com.olivares.parstagram.models
         ParseObject.registerSubclass(Post.class);
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId("DulfyCkOSm5bYakucabiH8O6Egl8prJXkj5yKySz")
@@ -19,4 +20,5 @@ public class ParseApplication extends Application {
                 .build()
         );
     }
+
 }

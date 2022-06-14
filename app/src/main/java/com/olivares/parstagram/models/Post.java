@@ -1,4 +1,4 @@
-package com.olivares.parstagram;
+package com.olivares.parstagram.models;
 
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
@@ -26,7 +26,7 @@ public class Post extends ParseObject {
     }
 
     // Getter and setter for user
-    public ParseUser getUser(){ return getParseUser("KEY_USER");
+    public ParseUser getUser(){ return getParseUser(KEY_USER);
     }
     public void setUser(ParseUser user){
         put(KEY_USER, user);

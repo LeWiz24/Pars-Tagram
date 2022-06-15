@@ -52,10 +52,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.i("Hello", "Please login");
-                Toasty.success(LoginActivity.this, "Success!", Toast.LENGTH_SHORT, true).show();
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
                 loginUser(username, password);
+                Toasty.success(LoginActivity.this, "Success!", Toast.LENGTH_SHORT, true).show();
             }
         });
 
@@ -107,13 +107,14 @@ public class LoginActivity extends AppCompatActivity {
                             Log.e(TAG,"Issue logging in",e);
                             return;
                         }
+                        Toasty.success(LoginActivity.this, "Success!", Toast.LENGTH_SHORT, true).show();
                         goToMainActivity();
                     }
                 });
     }
     // Intent to navigate to main activity
     private void goToMainActivity() {
-        Intent i = new Intent(this, FeedActivity.class);
+        Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
         finish();
     }

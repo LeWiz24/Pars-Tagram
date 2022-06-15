@@ -6,20 +6,6 @@
         android:title="Logout"
         app:showAsAction="never" />
     <item
-        android:id="@+id/btnNavigate"
-        android:title="Feed"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/btnPost"
-        android:icon="@drawable/instagram_new_post_outline_24"
-        android:title="Post"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/btnLike"
-        android:title="Likes"
-        android:icon="@drawable/ufi_heart"
-        app:showAsAction="always"/>
-    <item
         android:id="@+id/btnMessages"
         android:title="Messages"
         android:icon="@drawable/ufi_new_direct"

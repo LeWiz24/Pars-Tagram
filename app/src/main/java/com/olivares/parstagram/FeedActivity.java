@@ -114,13 +114,8 @@ public class FeedActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.btnLogout){
             logout();
         }
-        if (item.getItemId() == R.id.btnNavigate){
-            Intent i = new Intent(this, FeedActivity.class);
-            startActivity(i);
-        }
         return super.onOptionsItemSelected(item);
     }
-
     private void logout() {
             ParseUser.logOutInBackground(new LogOutCallback() {
                 @Override

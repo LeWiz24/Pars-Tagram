@@ -12,8 +12,11 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_compose.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_post.xml" value="0.1717948717948718" />
+        <entry key="app/src/main/res/layout/fragment_test.xml" value="0.2015625" />
         <entry key="app/src/main/res/layout/item_post.xml" value="0.2755208333333333" />
         <entry key="app/src/main/res/menu/feed_menu.xml" value="0.2755208333333333" />
+        <entry key="app/src/main/res/menu/menu_bottom_navigation.xml" value="0.33632812500000003" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1025" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1025" />

@@ -6,11 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:layout_marginTop="180dp"
+    >
 
+  <ImageView
+      android:id="@+id/ivLogo"
+      android:layout_width="match_parent"
+      android:layout_height="100dp"
+      android:src="@drawable/nav_logo_whiteout" />
   <EditText
       android:id="@+id/etUsername"
-      android:hint="Username"
+      android:hint="Phone number, email or username"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:ems="10"
@@ -25,17 +34,33 @@
   <Button
       android:id="@+id/btLogin"
       android:hint="Login"
+      android:backgroundTint="#1E88E5"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:layout_marginTop="25dp"
       />
   <Button
       android:id="@+id/btRegister"
       android:hint="Register"
+      android:layout_marginTop="10dp"
+      android:backgroundTint="#1E88E5"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       />
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:layout_marginTop="10dp"
+      android:text="Forgot your login details? Get help logging in."/>
+
+  <TextView
+      android:layout_marginTop="8dp"
+      android:text="Sign in with Facebbok."
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"/>
 
 
 
-
-  </LinearLayout>
+</LinearLayout>

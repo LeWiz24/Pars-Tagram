@@ -1,4 +1,4 @@
-package com.olivares.parstagram;
+package com.olivares.parstagram.classes;
 
 import android.app.Application;
 

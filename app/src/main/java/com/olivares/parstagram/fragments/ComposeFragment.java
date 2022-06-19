@@ -22,10 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.olivares.parstagram.LoginActivity;
-import com.olivares.parstagram.MainActivity;
 import com.olivares.parstagram.R;
 import com.olivares.parstagram.models.Post;
 import com.parse.ParseException;
@@ -61,6 +58,7 @@ public class ComposeFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_compose, container, false);
     }
+
     // Even triggered after onCreateView
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

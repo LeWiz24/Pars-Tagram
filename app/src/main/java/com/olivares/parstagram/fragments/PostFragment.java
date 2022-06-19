@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.olivares.parstagram.R;
 import com.olivares.parstagram.adapters.PostsAdapter;
+import com.olivares.parstagram.classes.EndlessRecyclerViewScrollListener;
 import com.olivares.parstagram.models.Post;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -26,9 +28,12 @@ import java.util.List;
 public class PostFragment extends Fragment {
 
     public static final String TAG = "PostFragment";
+    protected SwipeRefreshLayout kukujtgulegtufrbivevifbbviltnufbbhnjirhubgrhgrrkjcctcunenbittgrg;
     private PostsAdapter adapter;
     private List<Post> allPosts;
     RecyclerView rvPosts;
+    SwipeRefreshLayout swipeRefreshLayout;
+    private EndlessRecyclerViewScrollListener scrollListener;
 
 
     public PostFragment() {
@@ -47,24 +52,48 @@ public class PostFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         rvPosts = view.findViewById(R.id.rvPosts);
+        swipeRefreshLayout=view.findViewById(R.id.swipeContainer);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                clear();
+                queryPosts();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
         // Creating adapter
         allPosts = new ArrayList<>();
         adapter = new PostsAdapter(getContext(), allPosts);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         // Set adapter
         rvPosts.setAdapter(adapter);
         // Create layoutmanager
-        rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvPosts.setLayoutManager(layoutManager);
 
+        scrollListener =new EndlessRecyclerViewScrollListener(layoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                loadMore();
+            }
+        };
+
+        // Set scrolllistener on rvPosts
+        rvPosts.addOnScrollListener(scrollListener);
         queryPosts();
 
     }
+
+
+
     private void queryPosts() {
         // specify what type of data we want to query - Post.class
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         // include data referred by user key
         query.include(Post.KEY_USER);
         // limit query to latest 20 items
-        query.setLimit(20);
+        query.setLimit(5);
         // order posts by creation date (newest first)
         query.addDescendingOrder("createdAt");
         // start an asynchronous call for posts
@@ -85,5 +114,41 @@ public class PostFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    private void loadMore() {
+        Post lastPost=allPosts.get(allPosts.size()-1);
+        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
+        query.include(Post.KEY_USER);
+        query.setLimit(2);
+        query.orderByDescending(Post.KEY_CREATEDAT);
+        query.whereLessThan(Post.KEY_CREATEDAT,lastPost.getCreatedAt());
+        query.findInBackground(new FindCallback<Post>() {
+            @Override
+            public void done(List<Post> posts, ParseException e) {
+                swipeRefreshLayout.setRefreshing(false);
+                if(e!=null)
+                {
+                    Log.i(TAG,"Issue with loading more post");
+                    return;
+                }
+                for(Post post:posts)
+                {
+                    Log.i(TAG, "Post: "+post.getDescription());
+                }
+                addAll(posts);
+            }
+        });
+    }
+    public void addAll(List<Post> posts)
+    {
+        allPosts.addAll(posts);
+        adapter.notifyDataSetChanged();
+    }
+
+    protected void clear()
+    {
+        allPosts.clear();
+        adapter.notifyDataSetChanged();
     }
 }

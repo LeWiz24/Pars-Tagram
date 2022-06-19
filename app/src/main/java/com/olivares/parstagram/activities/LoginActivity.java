@@ -1,9 +1,8 @@
-package com.olivares.parstagram;
+package com.olivares.parstagram.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,10 +11,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.olivares.parstagram.R;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
-import com.parse.SignUpCallback;
 
 import es.dmoral.toasty.Toasty;
 
@@ -59,32 +58,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-//        btRegister.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String username = etUsername.getText().toString();
-//                String password = etPassword.getText().toString();
-//                Toasty.success(LoginActivity.this,"Congrats, you are registered", Toasty.LENGTH_SHORT, true).show();
-//                // Create the ParseUser
-//                ParseUser user = new ParseUser();
-//                // Set core properties
-//                user.setUsername(etUsername.getText().toString());
-//                user.setPassword(etPassword.getText().toString());
-//                // Set custom properties
-//                //user.put("phone", "650-253-0000");
-//                // Invoke signUpInBackground
-//                user.signUpInBackground(new SignUpCallback() {
-//                    public void done(ParseException e) {
-//                        if (e == null) {
-//                            // Hooray! Let them use the app now.
-//                        } else {
-//                            // Sign up didn't succeed. Look at the ParseException
-//                            // to figure out what went wrong
-//                        }
-//                    }
-//                });
-//            }
-//        });
         btRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,7 +66,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void loginUser(String username, String password) {
         Log.i("Hello","User is trying to login!");

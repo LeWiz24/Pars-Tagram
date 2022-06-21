@@ -8,7 +8,6 @@ Time spent: **Infinite** hours spent in total
 
 The following **required** functionality is completed:
 
-- [ ] User sees app icon in home screen.
 - [x] User can sign up to create a new account using Parse authentication
 - [x] User can log in to their account
 - [x] The current signed in user is persisted across app restarts
@@ -16,7 +15,6 @@ The following **required** functionality is completed:
 - [x] User can take a photo, add a caption, and post it to "Instagram"
 - [x] User can view the last 20 posts submitted to "Instagram"
 - [x] User can pull to refresh the last 20 posts submitted to "Instagram"
-- [ ] User can tap a post to go to a Post Details activity, which includes timestamp and caption.
 
 The following **stretch** features are implemented:
 
